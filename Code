@@ -1,0 +1,16 @@
+import pandas as pd
+df = pd.read_csv("random_forest_tree_predictions.csv")
+print(df)
+tree_predictions = df[["Tree_1", "Tree_2", "Tree_3"]]
+
+df["Final_Prediction"] = tree_predictions.mode(axis=1)[0]
+
+print("Tree Predictions:")
+print(tree_predictions)
+
+print("\nFinal Prediction using Majority Voting:")
+print(df["Final_Prediction"])
+print("Final Prediction Counts:")
+print(df["Final_Prediction"].value_counts())
+
+print("\nTotal Predictions:", len(df))
